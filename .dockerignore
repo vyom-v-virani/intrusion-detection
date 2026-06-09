@@ -1,0 +1,6 @@
+data/friday.csv
+data/*.parquet
+data/*.zip
+__pycache__
+*.pyc
+.git

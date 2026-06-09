@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inference
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inference
+  template:
+    metadata:
+      labels:
+        app: inference
+    spec:
+      containers:
+      - name: inference
+        image: ids-inference:latest
+        env:
+        - name: KAFKA_BROKER
+          value: "kafka:9092"
+        - name: INFLUX_URL
+          value: "http://influxdb:8086"
+        - name: INFLUX_TOKEN
+          value: "mytoken123"
+        - name: INFLUX_ORG
+          value: "ids-org"
+        - name: INFLUX_BUCKET
+          value: "network-traffic"
